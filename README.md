@@ -1,2 +1,2 @@
 # usbwatcher
-simple applicaation that uses libusb and its hotplug event notification
+simple application that uses libusb and its hotplug event notification
