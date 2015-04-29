@@ -39,9 +39,14 @@
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <qt>
-        <modules>core gui widgets</modules>
+        <modules></modules>
       </qt>
       <compileType>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerOptionItem>-lusb-1.0</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
       </compileType>
       <item path="CheckerClient.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -77,6 +82,11 @@
         <asmTool>
           <developmentMode>5</developmentMode>
         </asmTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerOptionItem>-lusb-1.0</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
       </compileType>
       <item path="CheckerClient.cpp" ex="false" tool="1" flavor2="0">
       </item>

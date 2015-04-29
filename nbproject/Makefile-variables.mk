@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux-x86
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux-x86
-CND_ARTIFACT_NAME_Debug=UsbCheckerClient
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/UsbCheckerClient
+CND_ARTIFACT_NAME_Debug=usbwatcher
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/usbwatcher
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Debug=UsbCheckerClient.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/UsbCheckerClient.tar
+CND_PACKAGE_NAME_Debug=usbwatcher.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/usbwatcher.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux-x86
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux-x86
-CND_ARTIFACT_NAME_Release=UsbCheckerClient
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/UsbCheckerClient
+CND_ARTIFACT_NAME_Release=usbwatcher
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/usbwatcher
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Release=UsbCheckerClient.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/UsbCheckerClient.tar
+CND_PACKAGE_NAME_Release=usbwatcher.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/usbwatcher.tar
 #
 # include compiler specific variables
 #

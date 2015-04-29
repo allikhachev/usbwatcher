@@ -4,7 +4,8 @@
  * Created on April 27, 2015, 10:17 PM
  */
 
-#include <QApplication>
+#include <iostream>
+#include <stdexcept>
 #include "DeviceChecker.h"
 #include "UsbWatcher.h" 
 
@@ -12,15 +13,21 @@ DeviceChecker checker;
 
 static void hotplug_callback(string deviceId) {
 
-    printf("Device %s has been connected\n", deviceId);
+    cout << "Device " << deviceId << " has been connected" << endl;
 
 }
 
 int main(int argc, char *argv[]) {
-    QCoreApplication app(argc, argv);    
-    UsbWatcher watcher;
+    try {
+        UsbWatcher watcher(NULL);
 
-    watcher.setHotplagHandler(hotplug_callback);
+        watcher.init();
+        watcher.setHotplagHandler(hotplug_callback);
 
-    return app.exec();
+        while (true) {
+            watcher.handleEvents();
+        }
+    } catch (std::runtime_error * err) {
+        cout << err->what() << endl;
+    }
 }

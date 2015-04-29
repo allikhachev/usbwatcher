@@ -7,6 +7,8 @@
 #ifndef DEVICECHECKER_H
 #define	DEVICECHECKER_H
 
+#include <string>
+
 using namespace std;
 
 class DeviceChecker {

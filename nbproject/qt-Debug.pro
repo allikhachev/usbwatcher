@@ -2,12 +2,12 @@
 # Use project properties -> Build -> Qt -> Expert -> Custom Definitions.
 TEMPLATE = app
 DESTDIR = dist/Debug/GNU-Linux-x86
-TARGET = UsbCheckerClient
+TARGET = usbwatcher
 VERSION = 1.0.0
 CONFIG -= debug_and_release app_bundle lib_bundle
 CONFIG += debug 
 PKGCONFIG +=
-QT = core gui widgets
+QT = 
 SOURCES += CheckerClient.cpp DeviceChecker.cpp UsbWatcher.cpp
 HEADERS += DeviceChecker.h UsbWatcher.h
 FORMS +=
@@ -21,4 +21,4 @@ QMAKE_CC = gcc
 QMAKE_CXX = g++
 DEFINES += 
 INCLUDEPATH += 
-LIBS += 
+LIBS += -lusb-1.0  
