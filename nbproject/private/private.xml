@@ -9,9 +9,8 @@
         <group>
             <file>file:/home/alex/NetBeansProjects/usbwatcher/UsbWatcher.cpp</file>
             <file>file:/home/alex/NetBeansProjects/usbwatcher/DeviceChecker.cpp</file>
-            <file>file:/home/alex/NetBeansProjects/usbwatcher/mainHotplugTest.cpp</file>
-            <file>file:/home/alex/NetBeansProjects/usbwatcher/UsbWatcher.h</file>
             <file>file:/home/alex/NetBeansProjects/usbwatcher/DeviceChecker.h</file>
+            <file>file:/home/alex/NetBeansProjects/usbwatcher/UsbWatcher.h</file>
             <file>file:/home/alex/NetBeansProjects/usbwatcher/CheckerClient.cpp</file>
         </group>
     </open-files>

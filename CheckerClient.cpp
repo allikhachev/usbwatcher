@@ -9,20 +9,18 @@
 #include "DeviceChecker.h"
 #include "UsbWatcher.h" 
 
-DeviceChecker checker;
-
-static void hotplug_callback(string deviceId) {
-
-    cout << "Device " << deviceId << " has been connected" << endl;
-
-}
-
 int main(int argc, char *argv[]) {
+    int classCount = 1;
+    int classes[] = {0x08};
+    
+    UsbWatcher::CLASS_COUNT = classCount;
+    UsbWatcher::CLASSES = classes;
     try {
-        UsbWatcher watcher(NULL);
+        DeviceChecker checker;
+        UsbWatcher watcher;
 
         watcher.init();
-        watcher.setHotplagHandler(hotplug_callback);
+        watcher.setDeviceChecker(&checker);
 
         while (true) {
             watcher.handleEvents();

@@ -5,11 +5,13 @@
  */
 
 #include "DeviceChecker.h"
+#include <iostream>
 
 DeviceChecker::DeviceChecker() {
 }
 
 bool DeviceChecker::isDeviceEnabled(string deviceId) {
+    cout << "Device " << deviceId << " has been connected" << endl;
     return false; // TODO: stub
 }
 

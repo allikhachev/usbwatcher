@@ -11,6 +11,9 @@
 
 using namespace std;
 
+/**
+ * Performs checking of a Usb device by its ID.
+ */
 class DeviceChecker {
 public:
     DeviceChecker();
