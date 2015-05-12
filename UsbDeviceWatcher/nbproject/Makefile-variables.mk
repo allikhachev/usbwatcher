@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux-x86
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux-x86
-CND_ARTIFACT_NAME_Debug=usbwatcher
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/usbwatcher
+CND_ARTIFACT_NAME_Debug=UsbDeviceWatcher
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/UsbDeviceWatcher
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Debug=usbwatcher.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/usbwatcher.tar
+CND_PACKAGE_NAME_Debug=UsbDeviceWatcher.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/UsbDeviceWatcher.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux-x86
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux-x86
-CND_ARTIFACT_NAME_Release=usbwatcher
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/usbwatcher
+CND_ARTIFACT_NAME_Release=UsbDeviceWatcher
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/UsbDeviceWatcher
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Release=usbwatcher.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/usbwatcher.tar
+CND_PACKAGE_NAME_Release=UsbDeviceWatcher.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/UsbDeviceWatcher.tar
 #
 # include compiler specific variables
 #
