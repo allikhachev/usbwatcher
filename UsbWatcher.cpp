@@ -14,7 +14,7 @@
 
 #include "UsbWatcher.h"
 
-DeviceChecker * UsbWatcher::deviceChecker = NULL;
+HotPlugHandler * UsbWatcher::deviceHandler = NULL;
 int classes[] = {0x08};
 int *UsbWatcher::CLASSES = classes;
 int UsbWatcher::CLASS_COUNT = 1;
@@ -60,9 +60,9 @@ void UsbWatcher::handleEvents() {
     }
 }
 
-void UsbWatcher::setDeviceChecker(DeviceChecker * deviceChecker) {
+void UsbWatcher::setHotPlugHandler(HotPlugHandler * deviceChecker) {
     if (deviceChecker != NULL) {
-        this->deviceChecker = deviceChecker;
+        this->deviceHandler = deviceChecker;
         checkConnectedDevices();
     }
 }
@@ -70,11 +70,11 @@ void UsbWatcher::setDeviceChecker(DeviceChecker * deviceChecker) {
 int LIBUSB_CALL UsbWatcher::hotplug_callback(libusb_context *ctx, libusb_device *dev,
         libusb_hotplug_event event, void *user_data) {
 
-    if (deviceChecker != NULL && isCheckedDeviceClass(dev)) {
+    if (deviceHandler != NULL && isCheckedDeviceClass(dev)) {
         string deviceId = getDeviceId(dev);
 
         if (!deviceId.empty())
-            deviceChecker->isDeviceEnabled(deviceId);
+            deviceHandler->performAction(deviceId);
     }
 
     return 0;
@@ -102,10 +102,10 @@ void UsbWatcher::checkConnectedDevices() {
         return;
     for (ssize_t i = 0; i < cnt; i++) {
         libusb_device *device = list[i];
-        if (deviceChecker != NULL && isCheckedDeviceClass(device)) {
+        if (deviceHandler != NULL && isCheckedDeviceClass(device)) {
             string deviceId = getDeviceId(device);
             if (!deviceId.empty())
-                deviceChecker->isDeviceEnabled(deviceId);
+                deviceHandler->performAction(deviceId);
         }
     }
 

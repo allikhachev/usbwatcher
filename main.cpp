@@ -6,7 +6,7 @@
 
 #include <iostream>
 #include <stdexcept>
-#include "DeviceChecker.h"
+#include "HotPlugHandler.h"
 #include "UsbWatcher.h" 
 
 int main(int argc, char *argv[]) {
@@ -16,11 +16,11 @@ int main(int argc, char *argv[]) {
     UsbWatcher::CLASS_COUNT = classCount;
     UsbWatcher::CLASSES = classes;
     try {
-        DeviceChecker checker;
+        HotPlugHandler checker;
         UsbWatcher watcher;
 
         watcher.init();
-        watcher.setDeviceChecker(&checker);
+        watcher.setHotPlugHandler(&checker);
 
         while (true) {
             watcher.handleEvents();

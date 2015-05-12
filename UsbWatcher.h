@@ -8,7 +8,7 @@
 #define	USBWATCHER_H
 
 #include <libusb-1.0/libusb.h>
-#include "DeviceChecker.h"
+#include "HotPlugHandler.h"
 
 using namespace std;
 
@@ -30,10 +30,10 @@ public:
      * Adds some action on usb hotplug event.
      * @param handler
      */
-    void setDeviceChecker(DeviceChecker * deviceChecker);
+    void setHotPlugHandler(HotPlugHandler * deviceChecker);
     virtual ~UsbWatcher();
 private:
-    static DeviceChecker * deviceChecker;
+    static HotPlugHandler * deviceHandler;
     /**
      * Processes libusb hotplug event.
      * @param ctx

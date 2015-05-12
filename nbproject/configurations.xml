@@ -4,7 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>DeviceChecker.h</itemPath>
+      <itemPath>HotPlugHandler.h</itemPath>
       <itemPath>UsbWatcher.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -14,9 +14,9 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>CheckerClient.cpp</itemPath>
-      <itemPath>DeviceChecker.cpp</itemPath>
+      <itemPath>HotPlugHandler.cpp</itemPath>
       <itemPath>UsbWatcher.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -48,15 +48,15 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="CheckerClient.cpp" ex="false" tool="1" flavor2="0">
+      <item path="HotPlugHandler.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="DeviceChecker.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="DeviceChecker.h" ex="false" tool="3" flavor2="0">
+      <item path="HotPlugHandler.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="UsbWatcher.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="UsbWatcher.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="4">
@@ -88,15 +88,15 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="CheckerClient.cpp" ex="false" tool="1" flavor2="0">
+      <item path="HotPlugHandler.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="DeviceChecker.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="DeviceChecker.h" ex="false" tool="3" flavor2="0">
+      <item path="HotPlugHandler.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="UsbWatcher.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="UsbWatcher.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>

@@ -4,26 +4,26 @@
  * Created on April 27, 2015, 10:50 PM
  */
 
-#ifndef DEVICECHECKER_H
-#define	DEVICECHECKER_H
+#ifndef HOT_PLUG_HANDLER_H
+#define	HOT_PLUG_HANDLER_H
 
 #include <string>
 
 using namespace std;
 
 /**
- * Performs checking of a Usb device by its ID.
+ * Performs some operation when a Usb device is connected.
  */
-class DeviceChecker {
+class HotPlugHandler {
 public:
-    DeviceChecker();
+    HotPlugHandler();
     /**
-     * Checks devise by deviceId
+     * Performs some operation with usb devise; deviceId is used.
      * @param deviceId contains vendorId and deviceId in format "vendorId:deviceId"
      * @return true - device is enabled, false - other case
      */
-    bool isDeviceEnabled(string deviceId);
-    virtual ~DeviceChecker();
+    void performAction(string deviceId);
+    virtual ~HotPlugHandler();
 private:
 
 };
