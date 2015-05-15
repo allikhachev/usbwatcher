@@ -8,6 +8,7 @@
 #define	HOT_PLUG_HANDLER_H
 
 #include <string>
+#include "Client.h"
 
 using namespace std;
 
@@ -16,7 +17,7 @@ using namespace std;
  */
 class HotPlugHandler {
 public:
-    HotPlugHandler();
+    HotPlugHandler(string hostName, unsigned short port);
     /**
      * Performs some operation with usb devise; deviceId is used.
      * @param deviceId contains vendorId and deviceId in format "vendorId:deviceId"
@@ -25,8 +26,9 @@ public:
     void performAction(string deviceId);
     virtual ~HotPlugHandler();
 private:
+    Client * client;
 
 };
 
-#endif	/* DEVICECHECKER_H */
+#endif	/* HOT_PLUG_HANDLER_H */
 

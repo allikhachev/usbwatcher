@@ -12,15 +12,15 @@
 int main(int argc, char *argv[]) {
     int classCount = 1;
     int classes[] = {0x08};
-    
+
     UsbWatcher::CLASS_COUNT = classCount;
     UsbWatcher::CLASSES = classes;
     try {
-        HotPlugHandler checker;
+        HotPlugHandler handler("127.0.0.1", 1061);
         UsbWatcher watcher;
 
         watcher.init();
-        watcher.setHotPlugHandler(&checker);
+        watcher.setHotPlugHandler(&handler);
 
         while (true) {
             watcher.handleEvents();

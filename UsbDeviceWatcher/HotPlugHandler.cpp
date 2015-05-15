@@ -7,11 +7,16 @@
 #include "HotPlugHandler.h"
 #include <iostream>
 
-HotPlugHandler::HotPlugHandler() {
+HotPlugHandler::HotPlugHandler(string hostName, unsigned short port) {
+    this->client = new Client(hostName, port);
 }
 
 void HotPlugHandler::performAction(string deviceId) {
-    cout << "Device " << deviceId << " has been connected" << endl;
+    if (client->isDeviceEnabledOnServer(deviceId)) {
+        cout << "Device " << deviceId << " is enabled" << endl;
+    } else {
+        cout << "Device " << deviceId << " is disabled" << endl;
+    }
 }
 
 HotPlugHandler::~HotPlugHandler() {
