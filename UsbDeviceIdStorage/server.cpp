@@ -16,7 +16,11 @@ using namespace std;
 const char Server::RESPONSE_DISABLED[] = "DISABLED";
 const char Server::RESPONSE_ENABLED[] = "ENABLED";
 
-Server::Server(unsigned short port) {
+Server::Server(unsigned short port, Storage * storage) {
+    this->storage = storage;
+    if (this->storage == NULL) {
+        throw new runtime_error("Storage is not defined");
+    }
     tcpServer = new QTcpServer(this);
     if (!tcpServer->listen(QHostAddress::Any, port)) {
         string error = "Unable to start the server: ";
@@ -34,12 +38,15 @@ void Server::sendResponse() {
 
     if (clientConnection->waitForReadyRead(10000)) {
         clientConnection->readLine(readBuffer, BUFFER_LEN);
-        cout << readBuffer << endl;
-        
-        //TODO add usb device checking 
-    }
+        string deviceId(readBuffer);
 
-    clientConnection->write(RESPONSE_ENABLED);
+        if (storage->containsDeviceId(deviceId))
+            clientConnection->write(RESPONSE_ENABLED);
+        else
+            clientConnection->write(RESPONSE_DISABLED);
+    } else {
+        clientConnection->write(RESPONSE_DISABLED);
+    }
     clientConnection->disconnectFromHost();
 }
 

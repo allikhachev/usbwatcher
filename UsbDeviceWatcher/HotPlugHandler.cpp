@@ -12,6 +12,9 @@ HotPlugHandler::HotPlugHandler(string hostName, unsigned short port) {
 }
 
 void HotPlugHandler::performAction(string deviceId) {
+
+    cout << 'device with id ' << deviceId << 'has been connected' << endl;
+
     if (client->isDeviceEnabledOnServer(deviceId)) {
         cout << "Device " << deviceId << " is enabled" << endl;
     } else {

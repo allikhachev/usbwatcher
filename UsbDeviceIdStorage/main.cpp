@@ -19,9 +19,8 @@ int main(int argc, char *argv[]) {
     try {
         QApplication app(argc, argv);
 
-        Server server(1061);
-
-        //     server.
+        Storage storage("127.0.0.1", "usbwatcher", "usbwatcher", "usbwatcher");
+        Server server(1061, &storage);
 
         return app.exec();
     } catch (std::runtime_error * err) {

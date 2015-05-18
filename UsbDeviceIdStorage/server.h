@@ -9,17 +9,19 @@
 
 #include <QObject>
 #include <QtCore>
+#include "storage.h"
 
 class QTcpServer;
 
 class Server : public QObject {
     Q_OBJECT
 public:
-    Server(unsigned short port);
+    Server(unsigned short port, Storage * storage);
     virtual ~Server();
 private slots:
     void sendResponse();
 private:
+    Storage * storage;
     QTcpServer *tcpServer;
     static const char RESPONSE_DISABLED[];
     static const char RESPONSE_ENABLED[];

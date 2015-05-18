@@ -89,7 +89,9 @@ string UsbWatcher::getDeviceId(libusb_device* dev) {
         return string("");
     } else {
         stringstream idStream;
-        idStream << std::setfill('0') << std::setw(4) << desc.idVendor << ":" << std::setw(4) << desc.idProduct;
+        idStream << std::setfill('0') << std::hex 
+                << std::setw(4) << desc.idVendor << ":" 
+                << std::setw(4) << desc.idProduct;
         return string(idStream.str());
     }
 }
