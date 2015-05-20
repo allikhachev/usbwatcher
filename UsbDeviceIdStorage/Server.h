@@ -9,7 +9,7 @@
 
 #include <QObject>
 #include <QtCore>
-#include "storage.h"
+#include "Storage.h"
 
 class QTcpServer;
 

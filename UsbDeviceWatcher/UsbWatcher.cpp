@@ -10,7 +10,6 @@
 #include <stdexcept>
 #include <iomanip>
 #include <string>
-#include <qt4/QtCore/qglobal.h>
 
 #include "UsbWatcher.h"
 
@@ -33,7 +32,7 @@ void UsbWatcher::init() {
 
     if (!libusb_has_capability(LIBUSB_CAP_HAS_HOTPLUG)) {
         libusb_exit(NULL);
-        string error = "Hotplug capabilites are not supported on this platform";
+        string error = "hotplug capabilites are not supported on this platform";
         throw new std::runtime_error(error);
     }
 
@@ -45,7 +44,7 @@ void UsbWatcher::init() {
             product_id, class_id, hotplug_callback, NULL, NULL);
     if (LIBUSB_SUCCESS != rc) {
         libusb_exit(NULL);
-        string error = "Error registering callback 0";
+        string error = "error registering callback 0";
         throw new std::runtime_error(error);
     }
 }

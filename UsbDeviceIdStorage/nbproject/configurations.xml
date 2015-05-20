@@ -4,19 +4,20 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>server.h</itemPath>
-      <itemPath>storage.h</itemPath>
+      <itemPath>Server.h</itemPath>
+      <itemPath>Storage.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
+      <itemPath>settings.ini</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>Server.cpp</itemPath>
+      <itemPath>Storage.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
-      <itemPath>server.cpp</itemPath>
-      <itemPath>storage.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -43,15 +44,17 @@
       </qt>
       <compileType>
       </compileType>
+      <item path="Server.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Server.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Storage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Storage.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="server.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="server.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="storage.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="storage.h" ex="false" tool="3" flavor2="0">
+      <item path="settings.ini" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="4">
@@ -78,15 +81,17 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="Server.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Server.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Storage.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Storage.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="server.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="server.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="storage.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="storage.h" ex="false" tool="3" flavor2="0">
+      <item path="settings.ini" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

@@ -4,7 +4,7 @@
  * Created on May 17, 2015, 10:34 PM
  */
 
-#include "storage.h"
+#include "Storage.h"
 
 #include <stdexcept>
 #include <iostream>
@@ -29,7 +29,7 @@ Storage::Storage(string hostName, string dbName, string user, string password) {
 bool Storage::containsDeviceId(string deviceId) {
     QSqlQuery query(db);
 
-    cout << 'checking device with id ' << deviceId << endl;
+    cout << "checking device with id " << deviceId << endl;
 
     query.prepare("select count(*) from device_id where id = :devId");
     QString value = deviceId.c_str();
@@ -42,15 +42,17 @@ bool Storage::containsDeviceId(string deviceId) {
 
     query.next();
     if (query.value(0).toInt() == 1) {
+        cout << "device with id " << deviceId << " has been found" << endl;
         return true;
     }
+    cout << "device with id " << deviceId << " has not been found" << endl;
     return false;
 }
 
 bool Storage::addDeviceId(string deviceId) {
     QSqlQuery query(db);
 
-    cout << 'adding device with id ' << deviceId << endl;
+    cout << "adding device with id " << deviceId << endl;
 
     query.prepare("INSERT INTO device_id (id) VALUES (:devId)");
     QString value = deviceId.c_str();

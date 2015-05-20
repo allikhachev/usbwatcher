@@ -7,9 +7,9 @@
 #include <stdexcept>
 #include <string>
 #include <iostream>
-#include "qt4/QtNetwork/QTcpServer"
-#include "qt4/QtNetwork/QTcpSocket"
-#include "server.h"
+#include "QTcpServer"
+#include "QTcpSocket"
+#include "Server.h"
 
 using namespace std;
 

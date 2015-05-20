@@ -58,6 +58,7 @@ build: .build-post
 
 .build-post: .build-impl
 # Add your post 'build' code here...
+	${CP} ${CND_BASEDIR}/settings.ini ${CND_DISTDIR}/${CONF}/${CND_PLATFORM_${CONF}}
 
 
 # clean

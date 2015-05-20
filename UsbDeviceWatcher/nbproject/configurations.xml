@@ -11,6 +11,7 @@
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
+      <itemPath>settings.ini</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -64,6 +65,8 @@
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="settings.ini" ex="false" tool="3" flavor2="0">
+      </item>
     </conf>
     <conf name="Release" type="4">
       <toolsSet>
@@ -107,6 +110,8 @@
       <item path="UsbWatcher.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="settings.ini" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

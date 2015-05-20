@@ -4,7 +4,7 @@
  * Created on May 15, 2015, 8:49 PM
  */
 
-#include "qt4/QtNetwork/QTcpSocket"
+#include "QTcpSocket"
 #include "Client.h"
 #include <iostream>
 
