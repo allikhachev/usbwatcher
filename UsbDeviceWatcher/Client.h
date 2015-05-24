@@ -8,8 +8,7 @@
 #define	CLIENT_H
 
 #include <string>
-#include <QObject>
-#include <QtCore>
+#include "QObject"
 
 using namespace std;
 

@@ -17,8 +17,10 @@ void HotPlugHandler::performAction(string deviceId) {
 
     if (client->isDeviceEnabledOnServer(deviceId)) {
         cout << "device " << deviceId << " is enabled" << endl;
+        emit deviceEnabled(deviceId);
     } else {
         cout << "device " << deviceId << " is disabled" << endl;
+        emit deviceDisabled(deviceId);
     }
 }
 

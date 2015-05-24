@@ -8,11 +8,12 @@
 #define	USBWATCHER_H
 
 #include <libusb-1.0/libusb.h>
-#include "HotPlugHandler.h"
+#include "QObject"
 
 using namespace std;
 
-class UsbWatcher {
+class UsbWatcher : public QObject {
+    Q_OBJECT
 public:
     static int *CLASSES;
     static int CLASS_COUNT;
@@ -21,19 +22,18 @@ public:
     /**
      * Configures libusb and add hotplug listener.
      */
-    void init();
+    void start();
+    virtual ~UsbWatcher();
+
+signals:
+    void deviceConnected(string deviceId);
+public slots:
     /**
      * Processes events on usb bus.
      */
     void handleEvents();
-    /**
-     * Adds some action on usb hotplug event.
-     * @param handler
-     */
-    void setHotPlugHandler(HotPlugHandler * deviceChecker);
-    virtual ~UsbWatcher();
 private:
-    static HotPlugHandler * deviceHandler;
+    static UsbWatcher * watcher;
     /**
      * Processes libusb hotplug event.
      * @param ctx

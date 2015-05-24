@@ -13,7 +13,7 @@
 
 #include "UsbWatcher.h"
 
-HotPlugHandler * UsbWatcher::deviceHandler = NULL;
+UsbWatcher * UsbWatcher::watcher = NULL;
 int classes[] = {0x08};
 int *UsbWatcher::CLASSES = classes;
 int UsbWatcher::CLASS_COUNT = 1;
@@ -27,7 +27,7 @@ UsbWatcher::UsbWatcher() {
     }
 }
 
-void UsbWatcher::init() {
+void UsbWatcher::start() {
     int rc;
 
     if (!libusb_has_capability(LIBUSB_CAP_HAS_HOTPLUG)) {
@@ -47,10 +47,16 @@ void UsbWatcher::init() {
         string error = "error registering callback 0";
         throw new std::runtime_error(error);
     }
+    watcher = this;
+    checkConnectedDevices();
 }
 
 void UsbWatcher::handleEvents() {
-    int rc = libusb_handle_events(NULL);
+    timeval timeValues;
+    timeValues.tv_sec = 0;
+    timeValues.tv_usec = 0;
+    
+    int rc = libusb_handle_events_timeout_completed(NULL, &timeValues, NULL);
     if (LIBUSB_SUCCESS != rc) {
 
         string error = libusb_error_name(rc);
@@ -59,21 +65,14 @@ void UsbWatcher::handleEvents() {
     }
 }
 
-void UsbWatcher::setHotPlugHandler(HotPlugHandler * deviceChecker) {
-    if (deviceChecker != NULL) {
-        this->deviceHandler = deviceChecker;
-        checkConnectedDevices();
-    }
-}
-
 int LIBUSB_CALL UsbWatcher::hotplug_callback(libusb_context *ctx, libusb_device *dev,
         libusb_hotplug_event event, void *user_data) {
 
-    if (deviceHandler != NULL && isCheckedDeviceClass(dev)) {
+    if (isCheckedDeviceClass(dev)) {
         string deviceId = getDeviceId(dev);
 
         if (!deviceId.empty())
-            deviceHandler->performAction(deviceId);
+            emit watcher->deviceConnected(deviceId);
     }
 
     return 0;
@@ -88,8 +87,8 @@ string UsbWatcher::getDeviceId(libusb_device* dev) {
         return string("");
     } else {
         stringstream idStream;
-        idStream << std::setfill('0') << std::hex 
-                << std::setw(4) << desc.idVendor << ":" 
+        idStream << std::setfill('0') << std::hex
+                << std::setw(4) << desc.idVendor << ":"
                 << std::setw(4) << desc.idProduct;
         return string(idStream.str());
     }
@@ -103,10 +102,10 @@ void UsbWatcher::checkConnectedDevices() {
         return;
     for (ssize_t i = 0; i < cnt; i++) {
         libusb_device *device = list[i];
-        if (deviceHandler != NULL && isCheckedDeviceClass(device)) {
+        if (isCheckedDeviceClass(device)) {
             string deviceId = getDeviceId(device);
             if (!deviceId.empty())
-                deviceHandler->performAction(deviceId);
+                emit deviceConnected(deviceId);
         }
     }
 

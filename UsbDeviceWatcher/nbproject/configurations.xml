@@ -7,10 +7,12 @@
       <itemPath>Client.h</itemPath>
       <itemPath>HotPlugHandler.h</itemPath>
       <itemPath>UsbWatcher.h</itemPath>
+      <itemPath>WarningForm.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
+      <itemPath>WarningForm.ui</itemPath>
       <itemPath>settings.ini</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
@@ -19,6 +21,7 @@
       <itemPath>Client.cpp</itemPath>
       <itemPath>HotPlugHandler.cpp</itemPath>
       <itemPath>UsbWatcher.cpp</itemPath>
+      <itemPath>WarningForm.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -62,6 +65,12 @@
       <item path="UsbWatcher.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="UsbWatcher.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WarningForm.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="WarningForm.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WarningForm.ui" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -108,6 +117,12 @@
       <item path="UsbWatcher.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="UsbWatcher.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WarningForm.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="WarningForm.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="WarningForm.ui" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
