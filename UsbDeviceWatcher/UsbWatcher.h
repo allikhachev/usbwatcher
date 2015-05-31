@@ -9,6 +9,7 @@
 
 #include <libusb-1.0/libusb.h>
 #include "QObject"
+#include <vector>
 
 using namespace std;
 
@@ -33,17 +34,11 @@ public slots:
      */
     void handleEvents();
 private:
-    static UsbWatcher * watcher;
     /**
-     * Processes libusb hotplug event.
-     * @param ctx
-     * @param dev
-     * @param event
-     * @param user_data
-     * @return 
+     * list of connected devices.
      */
-    static int LIBUSB_CALL hotplug_callback(libusb_context *ctx, libusb_device *dev,
-            libusb_hotplug_event event, void *user_data);
+    vector<string> devices;
+    
     /**
      * Compares device class with tested device classes.
      * @param deviceClass 

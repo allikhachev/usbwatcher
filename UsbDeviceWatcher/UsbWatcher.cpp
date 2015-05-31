@@ -10,10 +10,10 @@
 #include <stdexcept>
 #include <iomanip>
 #include <string>
+#include <algorithm>
 
 #include "UsbWatcher.h"
 
-UsbWatcher * UsbWatcher::watcher = NULL;
 int classes[] = {0x08};
 int *UsbWatcher::CLASSES = classes;
 int UsbWatcher::CLASS_COUNT = 1;
@@ -28,54 +28,11 @@ UsbWatcher::UsbWatcher() {
 }
 
 void UsbWatcher::start() {
-    int rc;
-
-    if (!libusb_has_capability(LIBUSB_CAP_HAS_HOTPLUG)) {
-        libusb_exit(NULL);
-        string error = "hotplug capabilites are not supported on this platform";
-        throw new std::runtime_error(error);
-    }
-
-    int vendor_id = LIBUSB_HOTPLUG_MATCH_ANY;
-    int product_id = LIBUSB_HOTPLUG_MATCH_ANY;
-    int class_id = LIBUSB_HOTPLUG_MATCH_ANY;
-
-    rc = libusb_hotplug_register_callback(NULL, LIBUSB_HOTPLUG_EVENT_DEVICE_ARRIVED, (libusb_hotplug_flag) 0, vendor_id,
-            product_id, class_id, hotplug_callback, NULL, NULL);
-    if (LIBUSB_SUCCESS != rc) {
-        libusb_exit(NULL);
-        string error = "error registering callback 0";
-        throw new std::runtime_error(error);
-    }
-    watcher = this;
     checkConnectedDevices();
 }
 
 void UsbWatcher::handleEvents() {
-    timeval timeValues;
-    timeValues.tv_sec = 0;
-    timeValues.tv_usec = 0;
-    
-    int rc = libusb_handle_events_timeout_completed(NULL, &timeValues, NULL);
-    if (LIBUSB_SUCCESS != rc) {
-
-        string error = libusb_error_name(rc);
-        error = "libusb_handle_events() failed: " + error;
-        throw new std::runtime_error(error);
-    }
-}
-
-int LIBUSB_CALL UsbWatcher::hotplug_callback(libusb_context *ctx, libusb_device *dev,
-        libusb_hotplug_event event, void *user_data) {
-
-    if (isCheckedDeviceClass(dev)) {
-        string deviceId = getDeviceId(dev);
-
-        if (!deviceId.empty())
-            emit watcher->deviceConnected(deviceId);
-    }
-
-    return 0;
+    checkConnectedDevices();
 }
 
 string UsbWatcher::getDeviceId(libusb_device* dev) {
@@ -98,6 +55,8 @@ void UsbWatcher::checkConnectedDevices() {
     libusb_device **list;
     ssize_t cnt = libusb_get_device_list(NULL, &list);
 
+    vector<string> newDevices;
+
     if (cnt < 0)
         return;
     for (ssize_t i = 0; i < cnt; i++) {
@@ -105,9 +64,14 @@ void UsbWatcher::checkConnectedDevices() {
         if (isCheckedDeviceClass(device)) {
             string deviceId = getDeviceId(device);
             if (!deviceId.empty())
+                newDevices.push_back(deviceId);
+            if (find(devices.begin(), devices.end(), deviceId) == devices.end()) {
                 emit deviceConnected(deviceId);
+            }
         }
     }
+
+    devices = newDevices;
 
     libusb_free_device_list(list, 1);
 };

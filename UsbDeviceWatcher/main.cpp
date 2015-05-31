@@ -19,11 +19,26 @@
 
 using namespace std;
 
+class MyApplication : public QApplication {
+public:
+
+    MyApplication(int& argc, char** argv, int flags = ApplicationFlags) : QApplication(argc, argv, flags){};
+
+    bool notify(QObject* receiver, QEvent* event) {
+        try {
+            return QApplication::notify(receiver, event);
+        } catch (std::exception* err) {
+            cout << err->what() << endl;
+            return false;
+        }
+    };
+};
+
 int main(int argc, char *argv[]) {
     int classCount = 1;
     int classes[] = {0x08};
 
-    QApplication app(argc, argv);
+    MyApplication app(argc, argv);
     QSettings settings("settings.ini", QSettings::IniFormat);
 
     string host = settings.value("server_host", "127.0.0.1").toString().toStdString();
@@ -42,7 +57,7 @@ int main(int argc, char *argv[]) {
         QObject::connect(&handler, SIGNAL(deviceDisabled(string)), &form, SLOT(showWarning(string)));
         
         watcher.start();
-        timer.start(5000); // handle usb events every 5 sec.
+        timer.start(2000); // handle usb events every 2 sec.
         return app.exec();
     } catch (std::runtime_error * err) {
         cout << err->what() << endl;
