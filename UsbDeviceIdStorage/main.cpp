@@ -15,10 +15,25 @@
 
 using namespace std;
 
+class MyApplication : public QApplication {
+public:
+
+    MyApplication(int& argc, char** argv, int flags = ApplicationFlags) : QApplication(argc, argv, flags){};
+
+    bool notify(QObject* receiver, QEvent* event) {
+        try {
+            return QApplication::notify(receiver, event);
+        } catch (std::exception* err) {
+            cout << err->what() << endl;
+            return false;
+        }
+    };
+};
+
 int main(int argc, char *argv[]) {
 
     try {
-        QApplication app(argc, argv);
+        MyApplication app(argc, argv);
 
         QSettings settings("settings.ini", QSettings::IniFormat);
 

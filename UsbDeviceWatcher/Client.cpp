@@ -24,8 +24,10 @@ bool Client::isDeviceEnabledOnServer(string deviceId) {
         emit deviceDisabled(deviceId);
         return false;
     }
+    
+    string messageToServer = "GET " + deviceId;
 
-    socket.write(deviceId.c_str());
+    socket.write(messageToServer.c_str());
 
     if (!socket.waitForReadyRead(Timeout)) {
         emit deviceDisabled(deviceId);

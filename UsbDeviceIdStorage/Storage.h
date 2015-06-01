@@ -34,6 +34,10 @@ public:
      * @return true - deviceId is added, false - other case
      */
     bool addDeviceId(string deviceId);
+    
+    bool logAccessEvent(string peer, string deviceId);
+    
+    bool logUnauthorizedAccessEvent(string peer, string deviceId);
 
     virtual ~Storage();
 private:

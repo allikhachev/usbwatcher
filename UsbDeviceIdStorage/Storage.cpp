@@ -9,6 +9,7 @@
 #include <stdexcept>
 #include <iostream>
 
+#include "QDateTime"
 #include "QSqlQuery"
 #include "QSqlError"
 #include "QString"
@@ -57,6 +58,48 @@ bool Storage::addDeviceId(string deviceId) {
     query.prepare("INSERT INTO device_id (id) VALUES (:devId)");
     QString value = deviceId.c_str();
     query.bindValue(":devId", value);
+    bool ok = query.exec();
+    if (!ok) {
+        cerr << query.lastError().text().toStdString() << endl;
+        return false;
+    }
+
+    return true;
+}
+
+bool Storage::logAccessEvent(string peer, string deviceId) {
+    QSqlQuery query(db);
+
+    cout << "adding log message for deviceId " << deviceId << endl;
+
+    query.prepare("INSERT INTO access_log (access_time, peer, device_id) VALUES (:time, :peer, :devId)");
+    
+    query.bindValue(":time", QDateTime::currentDateTime());
+    QString peerParam = peer.c_str();
+    query.bindValue(":peer", peerParam);
+    QString deviceIdParam = deviceId.c_str();
+    query.bindValue(":devId", deviceIdParam);
+    bool ok = query.exec();
+    if (!ok) {
+        cerr << query.lastError().text().toStdString() << endl;
+        return false;
+    }
+
+    return true;
+}
+
+bool Storage::logUnauthorizedAccessEvent(string peer, string deviceId) {
+    QSqlQuery query(db);
+
+    cout << "adding log message for unauthorized deviceId " << deviceId << endl;
+
+    query.prepare("INSERT INTO unauthorized_access_log (access_time, peer, device_id) VALUES (:time, :peer, :devId)");
+    
+    query.bindValue(":time", QDateTime::currentDateTime());
+    QString peerParam = peer.c_str();
+    query.bindValue(":peer", peerParam);
+    QString deviceIdParam = deviceId.c_str();
+    query.bindValue(":devId", deviceIdParam);
     bool ok = query.exec();
     if (!ok) {
         cerr << query.lastError().text().toStdString() << endl;
