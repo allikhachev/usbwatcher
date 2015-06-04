@@ -16,7 +16,7 @@ WarningForm::WarningForm() {
 
 void WarningForm::showWarning(string deviceId) {
     string message = "Вы подключили неразрешенное устройство c идентификатором " + deviceId;
-    widget.message->setText(tr(message.c_str()));
+    widget.message->setText(trUtf8(message.c_str()));
     show();
 }
 

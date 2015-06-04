@@ -85,7 +85,7 @@
       </toolsSet>
       <qt>
         <buildMode>1</buildMode>
-        <modules>core gui widgets</modules>
+        <modules>core gui widgets network</modules>
       </qt>
       <compileType>
         <cTool>

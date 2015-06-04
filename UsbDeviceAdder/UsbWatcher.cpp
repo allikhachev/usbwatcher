@@ -54,14 +54,14 @@ string UsbWatcher::getDeviceId(libusb_device* dev) {
 void UsbWatcher::checkConnectedDevices() {
     libusb_device **list;
     ssize_t cnt = libusb_get_device_list(NULL, &list);
-
+    
     vector<string> newDevices;
 
     if (cnt < 0)
         return;
     for (ssize_t i = 0; i < cnt; i++) {
         libusb_device *device = list[i];
-        if (isCheckedDeviceClass(device)) {
+        if (isCheckedDevice(device)) {
             string deviceId = getDeviceId(device);
             if (!deviceId.empty())
                 newDevices.push_back(deviceId);
@@ -83,10 +83,11 @@ bool UsbWatcher::isCheckedDeviceClass(int deviceClass) {
     return false;
 }
 
-bool UsbWatcher::isCheckedDeviceClass(libusb_device* dev) {
+bool UsbWatcher::isCheckedDevice(libusb_device* dev) {
     libusb_device_descriptor desc;
     int rc = libusb_get_device_descriptor(dev, &desc);
     if (LIBUSB_SUCCESS != rc) {
+        cerr << "libusb_get_device_descriptor return " << rc << endl;
         return false;
     }
     if (0 != (int) desc.bDeviceClass)
@@ -94,16 +95,22 @@ bool UsbWatcher::isCheckedDeviceClass(libusb_device* dev) {
 
     libusb_config_descriptor *config;
     libusb_get_config_descriptor(dev, 0, &config);
+    rc = libusb_get_config_descriptor(dev, 0, &config);
+    if (LIBUSB_SUCCESS != rc) {
+        cerr << "libusb_get_config_descriptor return " << rc << endl;
+        return false;
+    }
 
     const libusb_interface *inter;
     const libusb_interface_descriptor *interdesc;
     for (int i = 0; i < (int) config->bNumInterfaces; i++) {
         inter = &config->interface[i];
-        for (int j = 0; j < inter->num_altsetting; j++) {
-            interdesc = &inter->altsetting[j];
-            if (isCheckedDeviceClass((int) interdesc->bInterfaceClass))
-                return true;
-        }
+        if ((int) inter->num_altsetting <= 10 && (int) inter->num_altsetting > 0)
+            for (int j = 0; j < inter->num_altsetting; j++) {
+                interdesc = &inter->altsetting[j];
+                if (isCheckedDeviceClass((int) interdesc->bInterfaceClass))
+                    return true;
+            }
     }
     return false;
 }

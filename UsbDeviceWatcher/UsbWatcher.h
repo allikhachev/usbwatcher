@@ -44,7 +44,7 @@ private:
      * @param deviceClass 
      * @return ture - device class should be checked, false - otherwise
      */
-    static bool isCheckedDeviceClass(libusb_device* dev);
+    static bool isCheckedDevice(libusb_device* dev);
     static bool isCheckedDeviceClass(int deviceClass);
     static string getDeviceId(libusb_device* dev);
     /**

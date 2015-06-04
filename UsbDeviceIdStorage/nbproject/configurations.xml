@@ -65,7 +65,7 @@
       </toolsSet>
       <qt>
         <buildMode>1</buildMode>
-        <modules>core gui widgets</modules>
+        <modules>core gui widgets network sql</modules>
       </qt>
       <compileType>
         <cTool>
