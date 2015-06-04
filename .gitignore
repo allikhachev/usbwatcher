@@ -1,7 +1,6 @@
 /dist/
 /build/
 /*.dep.inc
-/UsbDeviceWatcher/dist/
-/UsbDeviceWatcher/build/
-/UsbDeviceIdStorage/dist/
-/UsbDeviceIdStorage/build/
+/*/moc_*.cpp
+/*/dist/
+/*/build/

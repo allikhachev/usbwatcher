@@ -18,17 +18,17 @@ public:
     Client(string hostName, unsigned short port);
     virtual ~Client();
     /**
-     * Checks device id on server side. 
+     * Adds device id on server side. 
      * Emits deviceEnabled and deviceDisabled signals.
      * @param deviceId
-     * @return true - device Id enabled; false - device Id disabled
+     * @return true - device Id added; false - other case
      */
-    bool isDeviceEnabledOnServer(string deviceId);
+    bool addDeviceOnServer(string deviceId);
     void run();
 
 signals:
-    void deviceEnabled(string deviceId);
-    void deviceDisabled(string deviceId);
+    void deviceAdded(string deviceId);
+    void deviceNotAdded(string deviceId);
 
 private:
     QString hostName;
