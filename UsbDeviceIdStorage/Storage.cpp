@@ -15,9 +15,10 @@
 #include "QString"
 #include "QVariant"
 
-Storage::Storage(string hostName, string dbName, string user, string password) {
+Storage::Storage(string hostName, int hostPort, string dbName, string user, string password) {
     db = QSqlDatabase::addDatabase("QMYSQL", "usbwatcher");
     db.setHostName(hostName.c_str());
+    db.setPort(hostPort);
     db.setDatabaseName(dbName.c_str());
     db.setUserName(user.c_str());
     db.setPassword(password.c_str());

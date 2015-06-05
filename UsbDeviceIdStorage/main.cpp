@@ -38,13 +38,14 @@ int main(int argc, char *argv[]) {
         QSettings settings("settings.ini", QSettings::IniFormat);
 
         string dbHost = settings.value("db_host", "127.0.0.1").toString().toStdString();
+        int dbPort = settings.value("db_port", 3306).toInt();
         string dbName = settings.value("db_name", "usbwatcher").toString().toStdString();
         string userName = settings.value("db_user_name", "usbwatcher").toString().toStdString();
         string userPass = settings.value("db_user_pass", "usbwatcher").toString().toStdString();
 
         unsigned short port = settings.value("server_port", 1061).toInt();
 
-        Storage storage(dbHost, dbName, userName, userPass);
+        Storage storage(dbHost, dbPort, dbName, userName, userPass);
         Server server(port, &storage);
 
         return app.exec();

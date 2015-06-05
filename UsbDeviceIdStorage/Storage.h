@@ -8,7 +8,7 @@
 #define	STORAGE_H
 
 #include <string>
-#include <qt4/QtSql/QSqlDatabase>
+#include "QSqlDatabase"
 
 using namespace std;
 
@@ -17,11 +17,12 @@ public:
     /**
      * Creates new storage with connection to mysql database.
      * @param hostName
+     * @param hostPort
      * @param dbName
      * @param user
      * @param password
      */
-    Storage(string hostName, string dbName, string user, string password);
+    Storage(string hostName, int hostPort, string dbName, string user, string password);
     /**
      * Checks if deviceId is contained in the storage.
      * @param deviceId
